@@ -42,10 +42,10 @@ def get_filters():
             break
 
     print('-'*40)
-    return city, month, day  
+    return city, month, day
 
 
-   
+
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
@@ -81,7 +81,7 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new database
         df = df[df['day_of_week'] == day.title()]
-        
+
     return df
 
 #displays rows of data according to user input
@@ -89,15 +89,15 @@ def display_raw_data(df):
     i=0
     answer = input('Would you like to display the first 5 rows of data? yes/no:').lower()
     pd.set_option('display.max_columns',None)
-    
+
     while True:
         if answer == 'no':
             break
         print(df[i:i+5])
         answer=input("Would you like to diplay the next 5 rows of data? yes/no:").lower()
         i+=5
-            
-    
+
+
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -176,7 +176,7 @@ def user_stats(df):
     print('Counts of User Types:\n', user_types)
 
 
-    # TO DO: Display counts of gender   
+    # TO DO: Display counts of gender
     try:
       gender_types = df['Gender'].value_counts()
       print('\nCounts of Gender Types:\n', gender_types)
@@ -210,14 +210,14 @@ def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-        
+
         display_raw_data(df)
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        restart = input('\nThank You for running this script.Would you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
 
